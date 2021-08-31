@@ -5,4 +5,18 @@
     <string name="requests">Requests</string>
     <string name="krishi">Krishi</string>
 
+    <array name="filters">
+        <item>Tomato</item>
+        <item>Potato</item>
+        <item>Lady Finger</item>
+        <item>Wheat</item>
+        <item>Rice</item>
+        <item>Pulse</item>
+        <item>Grain</item>
+        <item>Cabbage</item>
+        <item>Chilli</item>
+        <item>Banana</item>
+        <item>Mango</item>
+    </array>
+
 </resources>

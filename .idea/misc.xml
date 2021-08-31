@@ -3,10 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_main.xml" value="0.209375" />
-        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_market.xml" value="0.20520833333333333" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_search.xml" value="0.11666666666666667" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/layer_shadow.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_market.xml" value="0.25" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_requests.xml" value="0.20205128205128206" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/menu/menu_main_toolbar.xml" value="0.209375" />
       </map>
     </option>
   </component>

@@ -3,13 +3,13 @@
 
     <item android:id="@+id/action_market"
         android:title="@string/market"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_market"/>
 
     <item android:id="@+id/action_request"
         android:title="@string/requests"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_request"/>
 
     <item android:id="@+id/action_krishi"
         android:title="@string/krishi"
-        android:icon="@drawable/ic_launcher_foreground"/>
+        android:icon="@drawable/ic_krishi"/>
 </menu>
