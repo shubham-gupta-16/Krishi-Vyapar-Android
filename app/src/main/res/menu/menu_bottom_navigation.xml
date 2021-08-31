@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/action_market"
+        android:title="@string/market"
+        android:icon="@drawable/ic_launcher_foreground"/>
+
+    <item android:id="@+id/action_request"
+        android:title="@string/requests"
+        android:icon="@drawable/ic_launcher_foreground"/>
+
+    <item android:id="@+id/action_krishi"
+        android:title="@string/krishi"
+        android:icon="@drawable/ic_launcher_foreground"/>
+</menu>

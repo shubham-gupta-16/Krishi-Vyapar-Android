@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name" translatable="false">Krishi Vyapar</string>
+
+    <string name="market">Market</string>
+    <string name="requests">Requests</string>
+    <string name="krishi">Krishi</string>
+
+</resources>
