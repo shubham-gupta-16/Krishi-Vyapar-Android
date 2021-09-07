@@ -17,20 +17,21 @@ class AuthOTPVerifyActivity : AppCompatActivity() {
         val binding = ActivityOtpverifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val mobile = intent.getStringExtra("mobile").toString()
-        val phoneAuthHandler = PhoneAuthHandler(this)
+        val phoneAuthHandler = PhoneAuthHandler(this, true)
 
         binding.mobileText.text = "+91 $mobile"
 
         binding.otpView.setOtpCompletionListener { otp ->
-            phoneAuthHandler.signIn(otp, object : PhoneAuthHandler.OnCompleteListener {
+            phoneAuthHandler.verifyCode(otp, object : PhoneAuthHandler.OnCompleteListener {
                 override fun onSuccess(uid: String) {
                     Api.signUp(ApiData(this@AuthOTPVerifyActivity), mobile, uid).atSuccess { name ->
                         if (name== null)
-                        // TODO: 9/7/2021 go to register page
+                            startActivity(Intent(this@AuthOTPVerifyActivity, AuthNameRegisterActivity::class.java))
                         else {
-                            finishAffinity()
                             startActivity(Intent(this@AuthOTPVerifyActivity, MainActivity::class.java))
+
                         }
+                        finishAffinity()
 
                     }.atError { code, message ->
                         Toast.makeText(this@AuthOTPVerifyActivity, "$code -> $message", Toast.LENGTH_SHORT).show()

@@ -61,12 +61,14 @@ class APISystem<T>(
             }
 
             override fun onError(anError: ANError) {
-                Log.i("errorTag", anError.message!!)
                 if (callback != null)
                     callback(
                         anError.errorCode,
                         if (anError.message != null) anError.message!! else ""
                     )
+                if (anError.message!=null)
+                    Log.i("errorTag", anError.message.toString())
+
             }
         })
     }

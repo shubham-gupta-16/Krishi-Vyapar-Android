@@ -5,8 +5,10 @@ import org.json.JSONObject
 
 class Api {
     companion object {
-        private const val baseUrl = "http://192.168.43.169/krishi-vyapar-server/"
+        private const val baseUrl = "https://7e95-2405-204-a425-eed7-94f3-eeb6-32b3-2ffd.ngrok.io" +
+                "/krishi-vyapar-server/"
         const val USER_NOT_EXIST = 44
+        const val INVALID_TOKEN = 41
 
         fun userExist(mobile: String): APISystem<(name: String, uid: String) -> Unit> {
             val apiSys = APISystem<(name: String, uid: String) -> Unit>(
@@ -19,6 +21,19 @@ class Api {
             }
             return apiSys
         }
+
+        fun verifyUser(apiData: ApiData): APISystem<(name: String?) -> Unit> {
+            val apiSys = APISystem<(name: String?) -> Unit>(
+                authRequestBuilder(apiData,"auth/verify_user.php")
+            ) { obj, successCallback ->
+                if (successCallback == null) return@APISystem
+                val name = obj.tryString("name");
+                apiData.updateName(name)
+                successCallback(name)
+            }
+            return apiSys
+        }
+
 
         fun signUp(apiData: ApiData, mobile: String, uid: String): APISystem<(name: String?) -> Unit> {
             val apiSys = APISystem<(name: String?) -> Unit>(
@@ -57,7 +72,7 @@ class Api {
 
         private fun authRequestBuilder(apiData: ApiData?, path: String): EasyNetwork.Builder {
             val builder = EasyNetwork.Builder(baseUrl + path)
-    if (apiData != null) builder.addHeader("auth", apiData.getToken())
+    if (apiData != null) builder.addHeader("Auth", apiData.getToken())
             return builder
         }
     }

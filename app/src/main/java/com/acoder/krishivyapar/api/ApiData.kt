@@ -18,12 +18,8 @@ open class ApiData(context: Context) {
         editor.apply()
     }
 
-    fun getCurrentUser(){
-
-    }
-
     fun hasCurrentUser():Boolean{
-        return sharedPreferences.getString("token", null) != null
+        return getToken() != null
     }
 
     fun logout(){
@@ -35,5 +31,15 @@ open class ApiData(context: Context) {
 
     fun getToken(): String? {
         return sharedPreferences.getString("token", null)
+    }
+
+    fun getName(): String? {
+        return sharedPreferences.getString("name", null)
+    }
+
+    fun updateName(name: String?) {
+        val editor = sharedPreferences.edit()
+        editor.putString("name", name)
+        editor.apply()
     }
 }

@@ -22,16 +22,32 @@ public class PhoneAuthHandler {
     private PhoneAuthProvider.ForceResendingToken forceResendingToken;
     private long timeout = 60L;
     private String verificationId;
+    private boolean debugMode;
 
     public PhoneAuthHandler(@NonNull Activity activity) {
         this.activity = activity;
         auth = FirebaseAuth.getInstance();
+        this.debugMode = false;
+    }
+
+    public PhoneAuthHandler(@NonNull Activity activity, boolean debugMode) {
+        this.activity = activity;
+        auth = FirebaseAuth.getInstance();
+        this.debugMode = debugMode;
     }
 
     public PhoneAuthHandler(@NonNull Activity activity, long timeoutSeconds) {
         this.activity = activity;
         this.timeout = timeoutSeconds;
         auth = FirebaseAuth.getInstance();
+        this.debugMode = false;
+    }
+
+    public PhoneAuthHandler(@NonNull Activity activity, long timeoutSeconds, boolean debugMode) {
+        this.activity = activity;
+        this.timeout = timeoutSeconds;
+        auth = FirebaseAuth.getInstance();
+        this.debugMode = debugMode;
     }
 
     public interface OnCompleteListener {
@@ -71,8 +87,15 @@ public class PhoneAuthHandler {
     }
 
     private void _signIn(@NonNull String code, @NonNull OnCompleteListener onCompleteListener, boolean isSignOut) {
-        if (verificationId == null && !activity.isDestroyed())
+        if (activity.isDestroyed()) return;
+        if (debugMode) {
+            onCompleteListener.onSuccess("test");
+            return;
+        }
+        if (verificationId == null) {
             onCompleteListener.onError("Invalid Code");
+            return;
+        }
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         auth.signInWithCredential(credential).addOnCompleteListener(activity, task -> {
             if (activity.isDestroyed()) return;
@@ -88,6 +111,10 @@ public class PhoneAuthHandler {
     }
 
     private void _codeSender() {
+        if (debugMode) {
+            onCodeSentListener.onSent();
+            return;
+        }
         PhoneAuthOptions.Builder builder = PhoneAuthOptions.newBuilder(auth)
                 .setPhoneNumber(phone)
                 .setTimeout(timeout, TimeUnit.SECONDS)

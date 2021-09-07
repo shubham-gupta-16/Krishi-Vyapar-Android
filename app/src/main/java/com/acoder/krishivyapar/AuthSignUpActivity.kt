@@ -27,7 +27,7 @@ class AuthSignUpActivity : AppCompatActivity() {
                 binding.mobileTextInput.error = "Please enter a valid mobile no."
                 return@OnClickListener
             }
-            userExist(mobile)
+            goToOTPVerifyPage(mobile)
         })
     }
 
