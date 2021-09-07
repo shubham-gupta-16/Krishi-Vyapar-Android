@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:left="@dimen/tiny_ripple_gap"
+        android:top="@dimen/tiny_ripple_gap"
+        android:bottom="@dimen/tiny_ripple_gap"
+        android:right="@dimen/tiny_ripple_gap">
+        <ripple android:color="@color/primary" />
+    </item>
+
+</layer-list>

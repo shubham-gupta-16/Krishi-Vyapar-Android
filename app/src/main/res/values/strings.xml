@@ -4,6 +4,8 @@
     <string name="market">Market</string>
     <string name="requests">Requests</string>
     <string name="krishi">Krishi</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
 
     <array name="filters">
         <item>Tomato</item>
