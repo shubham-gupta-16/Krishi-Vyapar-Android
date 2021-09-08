@@ -24,7 +24,7 @@ class AuthOTPVerifyActivity : AppCompatActivity() {
         binding.otpView.setOtpCompletionListener { otp ->
             phoneAuthHandler.verifyCode(otp, object : PhoneAuthHandler.OnCompleteListener {
                 override fun onSuccess(uid: String) {
-                    Api.signUp(ApiData(this@AuthOTPVerifyActivity), mobile, uid).atSuccess { name ->
+                    Api(this@AuthOTPVerifyActivity).requestSignUp(mobile, uid).atSuccess { name ->
                         if (name== null)
                             startActivity(Intent(this@AuthOTPVerifyActivity, AuthNameRegisterActivity::class.java))
                         else {

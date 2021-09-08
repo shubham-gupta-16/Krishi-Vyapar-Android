@@ -5,24 +5,23 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.acoder.krishivyapar.api.Api
-import com.acoder.krishivyapar.api.ApiData
 import com.acoder.krishivyapar.databinding.ActivitySplashBinding
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         val binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val api = Api(this)
 
-        val apiData = ApiData(this)
+        api.reFetchBaseUrl("/krishi-vyapar-php/")
 
-        if (!apiData.hasCurrentUser()) {
+        if (!api.hasCurrentUser()) {
             Thread.sleep(2000)
             goToSignUpPage()
         } else {
             Thread.sleep(1000)
-            Api.verifyUser(apiData).atSuccess { name ->
+            api.requestVerifyUser().atSuccess { name ->
                 if (name == null)
                     startActivity(Intent(this, AuthNameRegisterActivity::class.java))
                 else
@@ -30,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
                 finish()
             }.atError { code, message ->
                 if (code == Api.INVALID_TOKEN || code == Api.USER_NOT_EXIST){
-                    apiData.logout()
+                    api.logout()
                     goToSignUpPage()
                     return@atError
                 }

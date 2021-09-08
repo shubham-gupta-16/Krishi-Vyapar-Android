@@ -32,7 +32,7 @@ class AuthSignUpActivity : AppCompatActivity() {
     }
 
     private fun userExist(mobile: String) {
-        Api.userExist(mobile).atSuccess { name, uid ->
+        Api(this).requestUserExist(mobile).atSuccess { name, uid ->
             goToOTPVerifyPage(mobile, name, uid)
         }.atError { code, message ->
             if (code == Api.USER_NOT_EXIST)

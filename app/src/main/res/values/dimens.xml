@@ -2,4 +2,6 @@
 <resources>
     <dimen name="shadow_height">15dp</dimen>
     <dimen name="tiny_ripple_gap">8dp</dimen>
+    <dimen name="floating_button_radius">16dp</dimen>
+    <dimen name="button_nav_radius">20dp</dimen>
 </resources>

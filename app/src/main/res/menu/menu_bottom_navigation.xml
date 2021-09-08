@@ -3,20 +3,20 @@
 
     <item android:id="@+id/action_home"
         android:title="@string/home"
-        android:icon="@drawable/ic_krishi"/>
-
-    <item android:id="@+id/action_market"
-        android:title="@string/market"
         android:icon="@drawable/ic_market"/>
+
+    <item android:id="@+id/action_chat"
+        android:title="@string/chat"
+        android:icon="@drawable/ic_baseline_chat_bubble_outline_24"/>
 
     <item android:id="@+id/action_null"
         android:title=""
         android:enabled="false"
         android:icon="@android:color/transparent"/>
 
-    <item android:id="@+id/action_request"
+    <item android:id="@+id/action_favorite"
         android:title="@string/requests"
-        android:icon="@drawable/ic_request"/>
+        android:icon="@drawable/ic_baseline_favorite_border_24"/>
 
     <item android:id="@+id/action_account"
         android:title="@string/account"

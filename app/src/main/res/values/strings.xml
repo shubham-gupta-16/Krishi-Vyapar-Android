@@ -6,6 +6,8 @@
     <string name="krishi">Krishi</string>
     <string name="home">Home</string>
     <string name="account">Account</string>
+    <string name="chat">Chat</string>
+    <string name="posts_requests">Your List</string>
 
     <array name="filters">
         <item>Tomato</item>

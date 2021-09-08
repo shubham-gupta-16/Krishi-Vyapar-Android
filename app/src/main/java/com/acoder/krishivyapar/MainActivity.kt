@@ -35,9 +35,10 @@ class MainActivity : AppCompatActivity() {
 
         setupViews(binding)
 
-        val badge = binding.bottomNavigation.getOrCreateBadge(R.id.action_home)
-        badge.isVisible = true
-        badge.number = 99
+//        ********** badges code **************
+//        val badge = binding.bottomNavigation.getOrCreateBadge(R.id.action_home)
+//        badge.isVisible = true
+//        badge.number = 99
     }
 
     private fun setupViews(binding: ActivityMainBinding) {
@@ -45,8 +46,8 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.action_home -> binding.viewpager2.setCurrentItem(0, false)
-                R.id.action_market -> binding.viewpager2.setCurrentItem(1, false)
-                R.id.action_request -> binding.viewpager2.setCurrentItem(2, false)
+                R.id.action_chat -> binding.viewpager2.setCurrentItem(1, false)
+                R.id.action_favorite -> binding.viewpager2.setCurrentItem(2, false)
                 R.id.action_account -> logout()
             }
             return@setOnItemSelectedListener false;
@@ -64,8 +65,8 @@ class MainActivity : AppCompatActivity() {
                 super.onPageScrolled(position, positionOffset, positionOffsetPixels)
                 when (position) {
                     0 -> binding.bottomNavigation.menu.findItem(R.id.action_home).isChecked = true
-                    1 -> binding.bottomNavigation.menu.findItem(R.id.action_market).isChecked = true
-                    2 -> binding.bottomNavigation.menu.findItem(R.id.action_request).isChecked =
+                    1 -> binding.bottomNavigation.menu.findItem(R.id.action_chat).isChecked = true
+                    2 -> binding.bottomNavigation.menu.findItem(R.id.action_favorite).isChecked =
                         true
                 }
             }

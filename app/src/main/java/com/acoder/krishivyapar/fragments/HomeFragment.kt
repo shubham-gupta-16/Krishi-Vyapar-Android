@@ -5,39 +5,45 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.acoder.krishivyapar.R
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import androidx.viewpager2.widget.ViewPager2
+import com.acoder.krishivyapar.databinding.FragmentHomeBinding
+import com.acoder.krishivyapar.fragments.sub_fragments.HomePostsFragment
+import com.acoder.krishivyapar.fragments.sub_fragments.HomeRequestsFragment
+import com.acoder.krishivyapar.views.MyViewPagerAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class HomeFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val binding = FragmentHomeBinding.inflate(layoutInflater)
+
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Posts"))
+        binding.tabLayout.addTab(binding.tabLayout.newTab().setText("Requests"))
+
+        setupViewPager(binding.viewpager2)
+
+        TabLayoutMediator(binding.tabLayout, binding.viewpager2
+        ) { tab, position ->
+            when(position){
+                0->            tab.text = "Posts"
+                1->            tab.text = "Requests"
+            }
+        }.attach()
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        return binding.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MarketFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun setupViewPager(viewPager2: ViewPager2) {
+//        applying fragments by using adapter
+        val adapter = MyViewPagerAdapter(requireActivity().supportFragmentManager, lifecycle)
+        adapter.addFragment(HomePostsFragment())
+        adapter.addFragment(HomeRequestsFragment())
+        viewPager2.adapter = adapter
     }
 }

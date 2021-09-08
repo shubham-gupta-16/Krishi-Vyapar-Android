@@ -1,7 +1,6 @@
 package com.acoder.krishivyapar.api;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.ANRequest;
@@ -99,6 +98,7 @@ public class EasyNetwork {
         }
 
         public ANRequest build() {
+            Log.d("apiUrl", url != null ? url : "`null`");
             if (url == null) {
                 return null;
             } else if (gets.isEmpty() && files.isEmpty() && posts.isEmpty()) {

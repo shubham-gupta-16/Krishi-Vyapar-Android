@@ -1,45 +1,55 @@
 package com.acoder.krishivyapar.api
 
 import android.content.Context
-import android.content.SharedPreferences
+import org.json.JSONObject
 
-open class ApiData(context: Context) {
-    private var sharedPreferences: SharedPreferences
-    private val prefName = "zombiePref30"
-
-    init {
-        sharedPreferences = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
-    }
-
-    internal fun localSignUp(token:String, name:String?){
-        val editor = sharedPreferences.edit()
-        editor.putString("token", token)
-        editor.putString("name", name)
-        editor.apply()
-    }
+open class ApiData(context: Context) : BaseApi(context) {
 
     fun hasCurrentUser():Boolean{
         return getToken() != null
     }
 
     fun logout(){
-        val editor = sharedPreferences.edit()
+        val editor = sharedPref.edit()
         editor.remove("token")
         editor.remove("name")
         editor.apply()
     }
-
-    fun getToken(): String? {
-        return sharedPreferences.getString("token", null)
-    }
-
     fun getName(): String? {
-        return sharedPreferences.getString("name", null)
+        return sharedPref.getString("name", null)
     }
 
-    fun updateName(name: String?) {
-        val editor = sharedPreferences.edit()
+    protected fun updateName(name: String?) {
+        val editor = sharedPref.edit()
         editor.putString("name", name)
         editor.apply()
+    }
+
+    protected fun localSignUp(token:String, name:String?){
+        val editor = sharedPref.edit()
+        editor.putString("token", token)
+        editor.putString("name", name)
+        editor.apply()
+    }
+
+    private fun getToken(): String? {
+        return sharedPref.getString("token", null)
+    }
+
+//    main api utils *********************
+    protected fun JSONObject.tryString(key: String): String? {
+        val value = this.optString(key)
+        if (value === "null") return null
+        return value
+    }
+
+    protected fun requestBuilder(path: String): EasyNetwork.Builder {
+        return EasyNetwork.Builder(getBaseUrl() + path)
+    }
+
+    protected fun authRequestBuilder(path: String): EasyNetwork.Builder {
+        val builder = EasyNetwork.Builder(getBaseUrl() + path)
+        builder.addHeader("Auth", getToken())
+        return builder
     }
 }

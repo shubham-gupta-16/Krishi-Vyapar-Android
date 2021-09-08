@@ -21,7 +21,7 @@ class AuthNameRegisterActivity : AppCompatActivity() {
                     binding.nameTextInput.error = "Please Enter a valid name"
                     return@setOnEditorActionListener false
                 }
-                Api.updateName(ApiData(this), name).atSuccess {
+                Api(this).requestUpdateName(name).atSuccess {
                     val i = Intent(this, MainActivity::class.java)
                     startActivity(i)
                     finish()
