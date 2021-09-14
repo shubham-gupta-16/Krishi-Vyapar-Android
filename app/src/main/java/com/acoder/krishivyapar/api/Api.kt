@@ -2,16 +2,38 @@ package com.acoder.krishivyapar.api
 
 import android.content.Context
 import android.util.Log
+import com.acoder.krishivyapar.models.LocationModel
 import com.androidnetworking.error.ANError
-import com.androidnetworking.interfaces.JSONArrayRequestListener
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import org.json.JSONObject
+import kotlin.math.log
 
 class Api(context: Context) : ApiData(context) {
 
     companion object {
         const val USER_NOT_EXIST = 44
         const val INVALID_TOKEN = 41
+    }
+
+    fun fetchLocations(keyword: String): APISystem<(locationList: ArrayList<LocationModel>) -> Unit> {
+        val apiSys = APISystem<(list: ArrayList<LocationModel>) -> Unit>(
+            requestBuilder("location/index.php").addPost("q", keyword)
+        ) { obj, successCallback ->
+            if (successCallback == null) return@APISystem
+            val list = ArrayList<LocationModel>();
+            val jArr = obj.getJSONArray("locations")
+            for (i in 0 until jArr.length()){
+                val each = jArr.getJSONObject(i)
+                val locality = each.optString("locality")
+                val city = each.optString("city")
+                val state = each.optString("state")
+                val lat = each.optDouble("lat")
+                val lng = each.optDouble("lng")
+                list.add(LocationModel("$locality, $city, $state", lat.toFloat(), lng.toFloat()))
+            }
+            successCallback(list)
+        }
+        return apiSys
     }
 
     fun requestUserExist(mobile: String): APISystem<(name: String, uid: String) -> Unit> {

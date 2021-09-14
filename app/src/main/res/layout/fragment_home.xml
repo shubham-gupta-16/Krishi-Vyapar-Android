@@ -7,46 +7,12 @@
     tools:context=".fragments.HomeFragment">
 
 
-    <androidx.appcompat.widget.Toolbar
+    <View
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:background="@color/toolbar"
-        app:menu="@menu/menu_main_toolbar">
+        android:background="@color/toolbar" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:background="?attr/selectableItemBackground"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:paddingStart="0dp"
-            android:paddingEnd="10dp">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginEnd="6dp"
-                android:src="@drawable/ic_loc_icon"
-                app:tint="@color/primary" />
-
-            <TextView
-                android:id="@+id/loc_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Parao, Varanasi"
-                android:textColor="@color/textPrimary"
-                android:textSize="16sp" />
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginEnd="6dp"
-                android:src="@drawable/ic_arrow_down_24" />
-
-        </LinearLayout>
-    </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout"
@@ -60,18 +26,31 @@
         android:id="@+id/viewpager2"
         android:layout_below="@id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
+
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="10dp"-->
+    <!--        android:layout_below="@id/tab_layout"-->
+    <!--        android:background="@drawable/shadow_toolbar"/>-->
+
+    <com.acoder.krishivyapar.views.SelectedLocationView
+        android:id="@+id/selectedLocationView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/search_button"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/search_bold" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_alignBottom="@id/tab_layout"
         android:background="#ddd" />
-
-<!--    <View-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="10dp"-->
-<!--        android:layout_below="@id/tab_layout"-->
-<!--        android:background="@drawable/shadow_toolbar"/>-->
 
 </RelativeLayout>

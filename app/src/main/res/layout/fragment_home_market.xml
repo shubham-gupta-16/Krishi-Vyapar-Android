@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
-    tools:context=".fragments.sub_fragments.HomePostsFragment">
+    tools:context=".fragments.sub_fragments.HomeMarketFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

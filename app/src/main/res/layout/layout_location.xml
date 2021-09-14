@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="36dp"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="3dp"
+    android:paddingStart="0dp"
+    android:paddingEnd="10dp">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/ic_loc_icon"
+        app:tint="@color/primary" />
+
+    <TextView
+        android:id="@+id/loc_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Parao, Varanasi"
+        android:textColor="@color/textPrimary"
+        android:textSize="16sp" />
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="6dp"
+        android:src="@drawable/ic_arrow_down_24" />
+</LinearLayout>

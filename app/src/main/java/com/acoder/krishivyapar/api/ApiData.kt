@@ -1,6 +1,7 @@
 package com.acoder.krishivyapar.api
 
 import android.content.Context
+import com.acoder.krishivyapar.models.LocationModel
 import org.json.JSONObject
 
 open class ApiData(context: Context) : BaseApi(context) {
@@ -9,10 +10,26 @@ open class ApiData(context: Context) : BaseApi(context) {
         return getToken() != null
     }
 
+    fun setLocation(model: LocationModel){
+        val editor = sharedPref.edit()
+        editor.putString("locText", model.locText)
+        editor.putFloat("lat", model.lat)
+        editor.putFloat("lng", model.lng)
+        editor.apply()
+    }
+
+    fun getLocation(): LocationModel? {
+        val locText = sharedPref.getString("locText", "").toString()
+        val lat = sharedPref.getFloat("lat", 0f)
+        val lng = sharedPref.getFloat("lat", 0f)
+        if (locText.isEmpty())
+            return null
+        return LocationModel(locText, lat, lng)
+    }
+
     fun logout(){
         val editor = sharedPref.edit()
-        editor.remove("token")
-        editor.remove("name")
+        editor.clear()
         editor.apply()
     }
     fun getName(): String? {

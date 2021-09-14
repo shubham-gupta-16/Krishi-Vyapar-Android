@@ -1,10 +1,16 @@
 package com.acoder.krishivyapar
 
+import android.animation.Animator
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.view.animation.DecelerateInterpolator
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.acoder.krishivyapar.api.ApiData
@@ -12,16 +18,18 @@ import com.acoder.krishivyapar.databinding.ActivityMainBinding
 import com.acoder.krishivyapar.fragments.HomeFragment
 import com.acoder.krishivyapar.fragments.MarketFragment
 import com.acoder.krishivyapar.fragments.RequestsFragment
+import com.acoder.krishivyapar.utils.setEndListener
 import com.acoder.krishivyapar.views.MyViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var apiData: ApiData
+    private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         apiData = ApiData(this)
 
@@ -33,7 +41,7 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        setupViews(binding)
+        setupViews()
 
 //        ********** badges code **************
 //        val badge = binding.bottomNavigation.getOrCreateBadge(R.id.action_home)
@@ -41,7 +49,13 @@ class MainActivity : AppCompatActivity() {
 //        badge.number = 99
     }
 
-    private fun setupViews(binding: ActivityMainBinding) {
+    private fun logout(){
+        apiData.logout()
+        startActivity(Intent(this, AuthSignUpActivity::class.java))
+        finish()
+    }
+
+    private fun setupViews() {
 //        bottomNavigation Item Select
         binding.bottomNavigation.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
@@ -54,6 +68,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         setupViewPager(binding.viewpager2)
+        setupFabButton()
 
 //        onPageChanged at viewPager2
         binding.viewpager2.registerOnPageChangeCallback(object : OnPageChangeCallback() {
@@ -74,11 +89,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun logout(){
-        apiData.logout()
-        startActivity(Intent(this, AuthSignUpActivity::class.java))
-        finish()
-    }
+
 
     private fun setupViewPager(viewPager2: ViewPager2) {
 //        applying fragments by using adapter
@@ -101,4 +112,46 @@ class MainActivity : AppCompatActivity() {
                 page.resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
         }
     }
+
+    private var isFabCardVisible = false
+    private fun setupFabButton() {
+        val scale = 0.9f;
+        animateFabCard(0f,scale,scale,50f,1)
+        binding.fab.setOnClickListener {
+            if (isFabCardVisible)
+                animateFabCard(0f,scale,scale,50f,200)
+            else
+                animateFabCard(1f,1f,1f,0f,200)
+        }
+    }
+
+    private fun animateFabCard(alpha: Float, x: Float, y: Float, transY: Float, duration: Long) {
+        isFabCardVisible = alpha != 0f
+        if (alpha == 1f){
+            binding.fabCard.visibility = View.VISIBLE
+            binding.fabCard.alpha = 0f
+            binding.fabIcon.animate().rotation(45f).setDuration(100).start()
+        } else
+            binding.fabIcon.animate().rotation(0f).setDuration(100).start()
+        binding.fab.isClickable = false
+        binding.fabCard.animate()
+            .alpha(alpha)
+            .scaleX(x)
+            .scaleY(y)
+            .setInterpolator(DecelerateInterpolator())
+            .translationY(transY)
+            .setStartDelay(50)
+            .setDuration(duration)
+            .setEndListener {
+                if (alpha == 0f)
+                    binding.fabCard.visibility = View.GONE
+                binding.fab.isClickable = true
+            }
+            .start()
+
+        val anim = AnimationUtils.loadAnimation(this, R.anim.click_anim)
+        binding.fab.startAnimation(anim)
+
+    }
+
 }
