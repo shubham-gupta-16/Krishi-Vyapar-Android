@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="form_input_radius">7dp</dimen>
+    <style name="FormTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/form_input_color</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/form_input_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/form_input_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/form_input_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/form_input_radius</item>
+    </style>
+</resources>

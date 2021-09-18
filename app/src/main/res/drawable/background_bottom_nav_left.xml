@@ -3,5 +3,5 @@
     <solid android:color="@color/white" />
     <corners
         android:topLeftRadius="@dimen/button_nav_radius"
-        android:topRightRadius="@dimen/floating_button_radius" />
+        android:topRightRadius="@dimen/button_nav_radius" />
 </shape>

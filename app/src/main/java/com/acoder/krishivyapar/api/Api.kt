@@ -1,12 +1,13 @@
 package com.acoder.krishivyapar.api
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
+import com.acoder.krishivyapar.models.AdModel
 import com.acoder.krishivyapar.models.LocationModel
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import org.json.JSONObject
-import kotlin.math.log
 
 class Api(context: Context) : ApiData(context) {
 
@@ -15,21 +16,63 @@ class Api(context: Context) : ApiData(context) {
         const val INVALID_TOKEN = 41
     }
 
+    fun requestLoadBase(context: Context): APISystem<(name: String?) -> Unit> {
+        val categoryManager = CategoryManager(context)
+        val apiSys = APISystem<(name: String?) -> Unit>(
+            authRequestBuilder("base.php")
+                .addPost("categoryVersion", categoryManager.getCategoryVersion().toString())
+                .addPost("subCategoryVersion", categoryManager.getSubCategoryVersion().toString())
+        ) { obj, successCallback ->
+            if (successCallback == null) return@APISystem
+            val categoryVersion = obj.getInt("categoryVersion");
+            val subCategoryVersion = obj.getInt("subCategoryVersion");
+            if (categoryVersion > categoryManager.getCategoryVersion())
+                categoryManager.initializeCategories(categoryVersion, obj.getJSONArray("category"))
+            if (subCategoryVersion > categoryManager.getSubCategoryVersion())
+                categoryManager.initializeSubCategories(
+                    subCategoryVersion,
+                    obj.getJSONArray("subCategory")
+                )
+            val name = obj.tryString("name");
+            updateName(name)
+            successCallback(name)
+        }
+        return apiSys
+    }
+
+    fun requestAds(page: Int): APISystem<(locationList: ArrayList<AdModel>) -> Unit> {
+        val location = getLocation()
+        val lat = location?.lat ?: 0;
+        val lng = location?.lng ?: 0;
+        val apiSys = APISystem<(list: ArrayList<AdModel>) -> Unit>(
+            authRequestBuilder("posts.php")
+                .addPost("page", page.toString())
+                .addPost("lat", lat.toString())
+                .addPost("lng", lng.toString())
+                .addPost("type", "0")
+        ) { obj, successCallback ->
+            if (successCallback == null) return@APISystem
+            val list = ArrayList<AdModel>();
+            val jArr = obj.getJSONArray("posts")
+            for (i in 0 until jArr.length()) {
+                val posts = jArr.getJSONObject(i)
+                list.add(parseAd(posts))
+            }
+            successCallback(list)
+        }
+        return apiSys
+    }
+
     fun fetchLocations(keyword: String): APISystem<(locationList: ArrayList<LocationModel>) -> Unit> {
         val apiSys = APISystem<(list: ArrayList<LocationModel>) -> Unit>(
-            requestBuilder("location/index.php").addPost("q", keyword)
+            authRequestBuilder("location/index.php").addPost("q", keyword)
         ) { obj, successCallback ->
             if (successCallback == null) return@APISystem
             val list = ArrayList<LocationModel>();
             val jArr = obj.getJSONArray("locations")
-            for (i in 0 until jArr.length()){
+            for (i in 0 until jArr.length()) {
                 val each = jArr.getJSONObject(i)
-                val locality = each.optString("locality")
-                val city = each.optString("city")
-                val state = each.optString("state")
-                val lat = each.optDouble("lat")
-                val lng = each.optDouble("lng")
-                list.add(LocationModel("$locality, $city, $state", lat.toFloat(), lng.toFloat()))
+                list.add(parseLocation(each))
             }
             successCallback(list)
         }
@@ -47,20 +90,6 @@ class Api(context: Context) : ApiData(context) {
         }
         return apiSys
     }
-
-    fun requestVerifyUser(): APISystem<(name: String?) -> Unit> {
-        val apiSys = APISystem<(name: String?) -> Unit>(
-            authRequestBuilder("auth/verify_user.php")
-        ) { obj, successCallback ->
-            if (successCallback == null) return@APISystem
-            val name = obj.tryString("name");
-            updateName(name)
-            successCallback(name)
-        }
-        return apiSys
-    }
-
-
     fun requestSignUp(mobile: String, uid: String): APISystem<(name: String?) -> Unit> {
         val apiSys = APISystem<(name: String?) -> Unit>(
             requestBuilder("auth/signup.php").addPost("mobile", mobile).addPost("uid", uid)
@@ -92,7 +121,13 @@ class Api(context: Context) : ApiData(context) {
                 override fun onResponse(response: JSONObject?) {
                     if (response == null) return
                     if (response.optInt("status") != 0) return
-                    setBaseUrl(response.optString("url") + path)
+                    val baseUrl = response.optString("url")
+                    if ("$baseUrl$path" != getBaseUrl()) {
+                        Log.d("base", getBaseUrl())
+                        Log.d("base", baseUrl + path)
+                        setBaseUrl(baseUrl + path)
+                        (context as Activity).finish()
+                    }
                 }
 
                 override fun onError(anError: ANError?) {

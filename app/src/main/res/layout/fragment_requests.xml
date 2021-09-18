@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FF9595"
-    tools:context=".fragments.RequestsFragment">
+    tools:context=".fragments.main.RequestsFragment">
 
     <TextView
         android:gravity="center"

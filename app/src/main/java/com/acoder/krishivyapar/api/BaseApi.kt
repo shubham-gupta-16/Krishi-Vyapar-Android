@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 
-open class BaseApi(context: Context) {
+open class BaseApi(protected val context: Context) {
     private val prefName = "zombiePref30"
     internal var sharedPref: SharedPreferences = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
 

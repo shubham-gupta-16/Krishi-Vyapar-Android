@@ -4,16 +4,10 @@
     android:layout_height="wrap_content">
 
     <View
-        android:layout_marginEnd="27dp"
         android:layout_width="0dp"
         android:layout_height="55dp"
         android:layout_weight="1"
+        android:backgroundTint="#f8f8f8"
         android:background="@drawable/background_bottom_nav_left" />
 
-    <View
-        android:layout_marginStart="27dp"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_weight="1"
-        android:background="@drawable/background_bottom_nav_right" />
 </LinearLayout>

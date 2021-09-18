@@ -21,7 +21,10 @@
         android:id="@+id/loc_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Parao, Varanasi"
+        android:text="Parao, Chandauli District"
+        android:maxWidth="190dp"
+        android:lines="1"
+        android:ellipsize="end"
         android:textColor="@color/textPrimary"
         android:textSize="16sp" />
 

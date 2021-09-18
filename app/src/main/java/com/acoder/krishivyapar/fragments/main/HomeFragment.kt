@@ -1,7 +1,6 @@
-package com.acoder.krishivyapar.fragments
+package com.acoder.krishivyapar.fragments.main
 
 import android.content.Intent
-import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,11 +11,10 @@ import com.acoder.krishivyapar.LocationActivity
 import com.acoder.krishivyapar.SearchActivity
 import com.acoder.krishivyapar.api.Api
 import com.acoder.krishivyapar.databinding.FragmentHomeBinding
-import com.acoder.krishivyapar.fragments.sub_fragments.HomeMarketFragment
-import com.acoder.krishivyapar.fragments.sub_fragments.HomeRequestsFragment
-import com.acoder.krishivyapar.views.MyViewPagerAdapter
+import com.acoder.krishivyapar.fragments.main.sub_fragments.HomeMarketFragment
+import com.acoder.krishivyapar.fragments.main.sub_fragments.HomeRequestsFragment
+import com.acoder.krishivyapar.adapters.MyViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.shubhamgupta16.materialkit.AnimUtils
 
 class HomeFragment : Fragment() {
 
@@ -49,12 +47,7 @@ class HomeFragment : Fragment() {
             }
         }.attach()
 
-        val selectedLocation = api.getLocation()
-        if (selectedLocation == null){
-            startActivity(Intent(requireContext(), LocationActivity::class.java))
-            return
-        }
-        binding.selectedLocationView.setText(selectedLocation.getTrimmed())
+
         binding.selectedLocationView.setOnClickListener {
             val intent = Intent(requireContext(), LocationActivity::class.java)
             startActivity(intent)
@@ -67,11 +60,20 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupViewPager(viewPager2: ViewPager2) {
-//        applying fragments by using adapter
+    override fun onStart() {
+        super.onStart()
+        val selectedLocation = api.getLocation()
+        if (selectedLocation == null){
+            startActivity(Intent(requireContext(), LocationActivity::class.java))
+            return
+        }
+        binding.selectedLocationView.setText(selectedLocation.getTrimmed())
+    }
+
+    private fun setupViewPager(fragmentPager: ViewPager2) {
         val adapter = MyViewPagerAdapter(childFragmentManager, lifecycle)
         adapter.addFragment(HomeMarketFragment())
         adapter.addFragment(HomeRequestsFragment())
-        viewPager2.adapter = adapter
+        fragmentPager.adapter = adapter
     }
 }

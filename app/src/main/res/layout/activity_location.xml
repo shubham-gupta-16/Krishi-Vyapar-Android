@@ -51,5 +51,7 @@
         android:layout_below="@id/toolbar"
         android:background="#dddddd" />
 
+<!--    todo loading layout-->
+
 
 </RelativeLayout>

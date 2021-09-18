@@ -34,6 +34,7 @@ class LocationActivity : AppCompatActivity() {
                 if (newText == null) return false
                 if (newText.length < 4) return false
                 key++
+                binding.testSuggestion.filterSuggestion(newText, null)
                 fetchLocations(newText, key)
                 return false
             }
@@ -57,7 +58,6 @@ class LocationActivity : AppCompatActivity() {
     }
 
     private fun fetchLocations(newText: String, k: Int, toSet: Boolean = false) {
-        binding.testSuggestion.filterSuggestion(newText, null)
         api.fetchLocations(newText).atSuccess { list ->
             if (toSet && list.isNotEmpty()){
                 api.setLocation(list[0])

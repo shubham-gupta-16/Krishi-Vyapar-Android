@@ -9,6 +9,7 @@
     tools:context=".SplashActivity">
 
     <ImageView
+        android:id="@+id/logo"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/ic_loc_icon"

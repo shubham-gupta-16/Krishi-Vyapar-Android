@@ -1,25 +1,21 @@
 package com.acoder.krishivyapar
 
-import android.animation.Animator
-import android.animation.ValueAnimator
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.acoder.krishivyapar.adapters.MyViewPagerAdapter
 import com.acoder.krishivyapar.api.ApiData
 import com.acoder.krishivyapar.databinding.ActivityMainBinding
-import com.acoder.krishivyapar.fragments.HomeFragment
-import com.acoder.krishivyapar.fragments.MarketFragment
-import com.acoder.krishivyapar.fragments.RequestsFragment
+import com.acoder.krishivyapar.fragments.main.HomeFragment
+import com.acoder.krishivyapar.fragments.main.MarketFragment
+import com.acoder.krishivyapar.fragments.main.RequestsFragment
 import com.acoder.krishivyapar.utils.setEndListener
-import com.acoder.krishivyapar.views.MyViewPagerAdapter
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,12 +53,14 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupViews() {
 //        bottomNavigation Item Select
+//        binding.bottomNavigation.itemIconTintList = null
         binding.bottomNavigation.setOnItemSelectedListener { item: MenuItem ->
             when (item.itemId) {
                 R.id.action_home -> binding.viewpager2.setCurrentItem(0, false)
                 R.id.action_chat -> binding.viewpager2.setCurrentItem(1, false)
                 R.id.action_favorite -> binding.viewpager2.setCurrentItem(2, false)
-                R.id.action_account -> logout()
+                R.id.action_account -> item.isChecked = true
+//                todo show account fragment instead
             }
             return@setOnItemSelectedListener false;
         }
@@ -116,12 +114,18 @@ class MainActivity : AppCompatActivity() {
     private var isFabCardVisible = false
     private fun setupFabButton() {
         val scale = 0.9f;
-        animateFabCard(0f,scale,scale,50f,1)
+        animateFabCard(0f, scale, scale, 50f, 1)
         binding.fab.setOnClickListener {
             if (isFabCardVisible)
-                animateFabCard(0f,scale,scale,50f,200)
+                animateFabCard(0f, scale, scale, 50f, 200)
             else
-                animateFabCard(1f,1f,1f,0f,200)
+                animateFabCard(1f, 1f, 1f, 0f, 200)
+        }
+
+        binding.addNewAd.setOnClickListener {
+            startActivity(Intent(this, AddNewAdActivity::class.java))
+            // TODO: 9/17/2021 improve performance by adding this onStart with no anim
+            animateFabCard(0f, scale, scale, 50f, 200)
         }
     }
 
