@@ -2,18 +2,66 @@ package com.acoder.krishivyapar.api
 
 import android.app.Activity
 import android.content.Context
+import android.database.Cursor
+import android.net.Uri
+import android.provider.MediaStore
 import android.util.Log
+import androidx.core.net.toUri
+import com.acoder.krishivyapar.models.AdListModel
 import com.acoder.krishivyapar.models.AdModel
 import com.acoder.krishivyapar.models.LocationModel
 import com.androidnetworking.error.ANError
 import com.androidnetworking.interfaces.JSONObjectRequestListener
 import org.json.JSONObject
+import java.io.File
+
 
 class Api(context: Context) : ApiData(context) {
 
     companion object {
         const val USER_NOT_EXIST = 44
         const val INVALID_TOKEN = 41
+    }
+
+    fun con(context: Context, _uri: Uri): String? {
+        var filePath: String? = null
+        Log.d("erer", "URI = $_uri")
+        if ("content" == _uri.scheme) {
+            val cursor: Cursor? = context.contentResolver
+                .query(_uri, arrayOf(MediaStore.Images.ImageColumns.DATA), null, null, null)
+            cursor?.moveToFirst()
+            filePath = cursor?.getString(0)
+            cursor?.close()
+        } else {
+            filePath = _uri.path
+        }
+        return filePath
+    }
+
+    fun requestUploadAd(context: Context, adMap: HashMap<String, String>, images: Map<String, Int>):
+            APISystem<(String?) -> Unit> {
+        val api = Api(context)
+        val map = hashMapOf<String, File>()
+        for ((key, value) in images) {
+            val path = con(context, key.toUri());
+            if (path != null) {
+                val file = File(path)
+                map["image_$value"] = file
+            }
+        }
+
+        val apiSys = APISystem<(name: String?) -> Unit>(
+            authRequestBuilder("post_ad.php")
+                .addPosts(adMap)
+                .addPost("locText", api.getLocation()?.locText)
+                .addPost("lat", api.getLocation()?.lat.toString())
+                .addPost("lng", api.getLocation()?.lng.toString())
+                .addFiles(map)
+        ) { obj, successCallback ->
+            if (successCallback == null) return@APISystem
+            successCallback("name")
+        }
+        return apiSys
     }
 
     fun requestLoadBase(context: Context): APISystem<(name: String?) -> Unit> {
@@ -40,23 +88,23 @@ class Api(context: Context) : ApiData(context) {
         return apiSys
     }
 
-    fun requestAds(page: Int): APISystem<(locationList: ArrayList<AdModel>) -> Unit> {
+    fun requestAds(page: Int): APISystem<(locationList: ArrayList<AdListModel>) -> Unit> {
         val location = getLocation()
         val lat = location?.lat ?: 0;
         val lng = location?.lng ?: 0;
-        val apiSys = APISystem<(list: ArrayList<AdModel>) -> Unit>(
-            authRequestBuilder("posts.php")
+        val apiSys = APISystem<(list: ArrayList<AdListModel>) -> Unit>(
+            authRequestBuilder("post_list.php")
                 .addPost("page", page.toString())
                 .addPost("lat", lat.toString())
                 .addPost("lng", lng.toString())
                 .addPost("type", "0")
         ) { obj, successCallback ->
             if (successCallback == null) return@APISystem
-            val list = ArrayList<AdModel>();
+            val list = ArrayList<AdListModel>();
             val jArr = obj.getJSONArray("posts")
             for (i in 0 until jArr.length()) {
                 val posts = jArr.getJSONObject(i)
-                list.add(parseAd(posts))
+                list.add(AdListModel.newInstance(posts))
             }
             successCallback(list)
         }
@@ -122,10 +170,9 @@ class Api(context: Context) : ApiData(context) {
                     if (response == null) return
                     if (response.optInt("status") != 0) return
                     val baseUrl = response.optString("url")
-                    if ("$baseUrl$path" != getBaseUrl()) {
-                        Log.d("base", getBaseUrl())
+                    if ("$baseUrl$path" != BaseApi.getUrl(context)) {
                         Log.d("base", baseUrl + path)
-                        setBaseUrl(baseUrl + path)
+                        BaseApi.setUrl(context, baseUrl + path)
                         (context as Activity).finish()
                     }
                 }

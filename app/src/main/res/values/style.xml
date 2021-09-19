@@ -3,10 +3,29 @@
     <dimen name="form_input_radius">7dp</dimen>
     <style name="FormTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
         <item name="boxStrokeColor">@color/form_input_color</item>
-        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:backgroundTint">@color/app_background</item>
         <item name="boxCornerRadiusBottomEnd">@dimen/form_input_radius</item>
         <item name="boxCornerRadiusBottomStart">@dimen/form_input_radius</item>
         <item name="boxCornerRadiusTopStart">@dimen/form_input_radius</item>
         <item name="boxCornerRadiusTopEnd">@dimen/form_input_radius</item>
+        <item name="android:editTextBackground">@color/app_background</item>
+        <item name="editTextBackground">@color/app_background</item>
+    </style>
+    <style name="FormTextInputLayout.Exposed" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/form_input_color</item>
+        <item name="android:layout_marginBottom">20dp</item>
+        <item name="android:backgroundTint">@color/app_background</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/form_input_radius</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/form_input_radius</item>
+        <item name="boxCornerRadiusTopStart">@dimen/form_input_radius</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/form_input_radius</item>
+        <item name="android:editTextBackground">@color/app_background</item>
+        <item name="editTextBackground">@color/app_background</item>
+    </style>
+    <style name="PrimaryButton">
+        <item name="android:background">@drawable/background_primary_button</item>
+        <item name="android:layout_height">42dp</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
 </resources>

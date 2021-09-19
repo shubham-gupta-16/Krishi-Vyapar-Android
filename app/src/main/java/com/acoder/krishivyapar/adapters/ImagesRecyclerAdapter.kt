@@ -72,12 +72,11 @@ class ImagesRecyclerAdapter(
         notifyItemChanged(position)
     }
 
-    private fun getImages(): List<String> {
-        val list = ArrayList<String>()
+    fun getImages(): Map<String, Int> {
+        val list = HashMap<String, Int>()
         for ((key, select) in selectList){
-            list.add(select.value - 1, key)
+            list[key] = select.value
         }
-        Log.d("getImages", "getImages: $list")
         return list
     }
 

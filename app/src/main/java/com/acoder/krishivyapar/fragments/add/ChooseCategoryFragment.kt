@@ -1,10 +1,10 @@
 package com.acoder.krishivyapar.fragments.add
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.acoder.krishivyapar.adapters.CategoryRecyclerAdapter
 import com.acoder.krishivyapar.api.Api
@@ -21,7 +21,8 @@ class ChooseCategoryFragment() : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentRecyclerBinding.inflate(layoutInflater, container, false)
+        if (!this::binding.isInitialized)
+            binding = FragmentRecyclerBinding.inflate(layoutInflater, container, false)
         return binding.root
     }
 

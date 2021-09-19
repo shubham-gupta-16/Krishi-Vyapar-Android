@@ -18,6 +18,8 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        app:tabIndicatorColor="@color/primary_variant"
+        app:tabSelectedTextColor="@color/primary_variant"
         android:layout_below="@id/toolbar"
         app:tabIndicatorHeight="5dp"
         app:tabUnboundedRipple="false" />

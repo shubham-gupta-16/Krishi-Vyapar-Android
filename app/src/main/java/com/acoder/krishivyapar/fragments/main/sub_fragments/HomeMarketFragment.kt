@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.acoder.krishivyapar.adapters.AdRecyclerAdapter
 import com.acoder.krishivyapar.api.Api
 import com.acoder.krishivyapar.databinding.FragmentHomeMarketBinding
+import com.acoder.krishivyapar.models.AdListModel
 import com.acoder.krishivyapar.models.AdModel
 
 
 class HomeMarketFragment() : Fragment() {
     private lateinit var binding: FragmentHomeMarketBinding;
-    private val list = ArrayList<AdModel>()
+    private val list = ArrayList<AdListModel>()
     private lateinit var adapter: AdRecyclerAdapter
     private lateinit var api: Api
     override fun onCreateView(

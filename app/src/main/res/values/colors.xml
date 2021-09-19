@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#8B5FD8</color>
-    <color name="primary_variant">#8B5FD8</color>
-
+    <color name="primary">#566CF1</color>
+    <color name="primary_variant">#F46236</color>
+<!--    <color name="primary">#8B5FD8</color>-->
+<!--    <color name="primary_variant">#8B5FD8</color>-->
     <color name="status_bar">#ffffff</color>
     <color name="toolbar">#ffffff</color>
     <color name="app_background">#ffffff</color>

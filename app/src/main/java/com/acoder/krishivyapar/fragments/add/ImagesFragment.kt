@@ -1,20 +1,14 @@
 package com.acoder.krishivyapar.fragments.add
 
 import android.app.Activity
-import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.provider.MediaStore.MediaColumns
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.loader.app.LoaderManager
-import androidx.loader.content.CursorLoader
-import androidx.loader.content.Loader
 import androidx.recyclerview.widget.GridLayoutManager
 import com.acoder.krishivyapar.adapters.ImagesRecyclerAdapter
 import com.acoder.krishivyapar.databinding.FragmentImagesBinding
@@ -23,12 +17,14 @@ import com.acoder.krishivyapar.databinding.FragmentImagesBinding
 class ImagesFragment : Fragment() {
 
     private lateinit var binding: FragmentImagesBinding
+    private var listener: ((images: Map<String, Int>) -> Unit)? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentImagesBinding.inflate(inflater, container, false)
+        if (!this::binding.isInitialized)
+            binding = FragmentImagesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -41,6 +37,11 @@ class ImagesFragment : Fragment() {
         binding.imageRecycler.adapter = adapter
         binding.imageRecycler.itemAnimator = null
         binding.imageRecycler.layoutManager = GridLayoutManager(requireContext(), 3)
+        binding.nextButton.setOnClickListener {
+            val imageList = adapter.getImages()
+            if (imageList.isNotEmpty())
+                listener?.invoke(imageList)
+        }
     }
 
 
@@ -59,6 +60,10 @@ class ImagesFragment : Fragment() {
             cursor.close()
         }
         return listOfAllImages
+    }
+
+    fun setOnNextClickListener(listener: (images: Map<String, Int>) -> Unit) {
+        this.listener = listener
     }
 
 

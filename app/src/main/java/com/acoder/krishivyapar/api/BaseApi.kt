@@ -4,23 +4,34 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
 
-open class BaseApi(protected val context: Context) {
-    private val prefName = "zombiePref30"
-    internal var sharedPref: SharedPreferences = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+open class BaseApi {
+    companion object {
 
-    protected fun setBaseUrl(url:String){
-        val editor = sharedPref.edit()
-        editor.putString("baseUrl", url)
-        Log.d("setBaseUrl", url)
-        editor.apply()
+        private const val prefName = "zombiePrefer"
+
+        fun setUrl(context: Context, url: String) {
+            val sharedPref: SharedPreferences =
+                context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            val editor = sharedPref.edit()
+            editor.putString("baseUrl", url)
+            Log.d("setBaseUrl", url)
+            editor.apply()
+        }
+
+        fun getUrl(context: Context): String {
+            val sharedPref: SharedPreferences =
+                context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+            return sharedPref.getString("baseUrl", "").toString()
+        }
+
+        fun getImagesUrl(context: Context, path: String = ""): String {
+            return BaseApi.getUrl(context) +"images/"+path
+        }
+
+        fun initBaseUrl(context: Context, url: String) {
+            if (getUrl(context).isEmpty())
+                setUrl(context, url)
+        }
     }
 
-    protected fun getBaseUrl(): String {
-        return sharedPref.getString("baseUrl", "").toString()
-    }
-
-    fun initBaseUrl(url:String){
-        if (getBaseUrl().isEmpty())
-            setBaseUrl(url)
-    }
 }

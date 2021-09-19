@@ -1,5 +1,6 @@
 package com.acoder.krishivyapar
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
@@ -15,12 +16,17 @@ import com.acoder.krishivyapar.databinding.ActivityMainBinding
 import com.acoder.krishivyapar.fragments.main.HomeFragment
 import com.acoder.krishivyapar.fragments.main.MarketFragment
 import com.acoder.krishivyapar.fragments.main.RequestsFragment
+import com.acoder.krishivyapar.utils.LocaleHelper
 import com.acoder.krishivyapar.utils.setEndListener
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var apiData: ApiData
     private lateinit var binding: ActivityMainBinding
+
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase))
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

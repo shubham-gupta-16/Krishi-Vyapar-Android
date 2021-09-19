@@ -1,10 +1,14 @@
 package com.acoder.krishivyapar.api
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.acoder.krishivyapar.models.LocationModel
 import org.json.JSONObject
 
-open class ApiData(context: Context) : BaseApi(context) {
+open class ApiData(protected val context: Context) {
+
+    private val prefName = "zombiePref30"
+    private var sharedPref: SharedPreferences = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
 
     fun hasCurrentUser():Boolean{
         return getToken() != null
@@ -61,11 +65,11 @@ open class ApiData(context: Context) : BaseApi(context) {
     }
 
     protected fun requestBuilder(path: String): EasyNetwork.Builder {
-        return EasyNetwork.Builder(getBaseUrl() + path)
+        return EasyNetwork.Builder(BaseApi.getUrl(context) + path)
     }
 
     protected fun authRequestBuilder(path: String): EasyNetwork.Builder {
-        val builder = EasyNetwork.Builder(getBaseUrl() + path)
+        val builder = EasyNetwork.Builder(BaseApi.getUrl(context) + path)
         builder.addHeader("Auth", getToken())
         return builder
     }
