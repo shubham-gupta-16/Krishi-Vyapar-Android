@@ -26,9 +26,11 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
         <activity
+            android:name=".FullAdViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".TestActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,7 +48,7 @@
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".AuthNameRegisterActivity"
             android:exported="true" />

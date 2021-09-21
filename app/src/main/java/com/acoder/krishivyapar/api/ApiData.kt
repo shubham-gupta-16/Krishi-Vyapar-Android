@@ -46,10 +46,15 @@ open class ApiData(protected val context: Context) {
         editor.apply()
     }
 
-    protected fun localSignUp(token:String, name:String?){
+    fun getMobile(): String {
+        return sharedPref.getString("mobile", "").toString();
+    }
+
+    protected fun localSignUp(token:String, name:String?, mobile: String){
         val editor = sharedPref.edit()
         editor.putString("token", token)
         editor.putString("name", name)
+        editor.putString("mobile", mobile)
         editor.apply()
     }
 

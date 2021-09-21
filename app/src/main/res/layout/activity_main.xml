@@ -12,7 +12,7 @@
         android:id="@+id/viewpager2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="40dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 <!--    bottom navigation ***********************
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"/>
 
-
+<!--    yahoo replace menu_2 with menu -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigation"
         android:layout_width="match_parent"
@@ -41,9 +41,8 @@
         android:elevation="0dp"
         app:itemTextAppearanceActive="@color/black"
         app:elevation="0dp"
-        app:itemBackground="@drawable/tiny_ripple"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/menu_bottom_navigation" />
+        app:menu="@menu/menu_bottom_navigation_2" />
 
 
     <LinearLayout

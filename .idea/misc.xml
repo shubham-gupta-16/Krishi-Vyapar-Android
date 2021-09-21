@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable-v24/indicator_drawable.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/a_account.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/a_account_active.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/a_chat.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/a_chat_active.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/a_fav.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/a_fav_active.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/a_home.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/a_home_active.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alice_chat.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alice_chat_active.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alice_fav.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alice_fav_active.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alice_home.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alpha_account_icon.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alpha_chat_icon.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alpha_fav_icon.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/alpha_home_icon.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_badge_image_select.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_badge_image_select_active.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_bottom_nav_left.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_floating_button.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_form_button.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_primary_button.xml" value="0.11614583333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_search.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/background_tab_item.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_account.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_app_icon.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_app_icon_dull.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_arrow_back_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_arrow_down_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_baseline_chat_bubble_outline_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_call.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_cross.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_krishi.xml" value="0.11666666666666667" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_loc_icon.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_loc_icon_outline.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_loc_icon_small.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_logout.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/ic_market.xml" value="0.11666666666666667" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/indicator_drawable.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/loading_background.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/otp.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/placeholder_account.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/placeholder_loading_image.xml" value="0.11614583333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/placeholder_user.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/shadow_bottom_nav.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/z_text_card.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_add_new_ad.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_full_ad_view.xml" value="0.22" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_location.xml" value="0.2" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_name_register.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_otpverify.xml" value="0.2" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_search.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_test.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/background_bottom_nav.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_account.xml" value="0.22" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_ad_relevant_details.xml" value="0.2" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_choose_category.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_fianl.xml" value="0.22" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_home_market.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_home_requests.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_images.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_maps.xml" value="0.17962962962962964" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_market.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_recycler.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_relevant_details.xml" value="0.22135416666666666" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_requests.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/item_ad_horizontal.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/item_category_grid_2.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/item_image_select.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/layout_location.xml" value="0.33" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/layout_progress_loading.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/loading_layout.xml" value="0.2" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/loading_layout_trans.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/product_slide_full_layout.xml" value="0.209375" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/menu/menu_bottom_navigation.xml" value="0.18981481481481483" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/menu/menu_bottom_navigation_2.xml" value="0.22135416666666666" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.22552083333333334" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.22552083333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>

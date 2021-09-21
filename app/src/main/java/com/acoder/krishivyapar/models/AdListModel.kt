@@ -1,15 +1,11 @@
 package com.acoder.krishivyapar.models
 
-import com.acoder.krishivyapar.api.parseImages
-import com.acoder.krishivyapar.api.parseLocation
-import com.acoder.krishivyapar.api.parseUser
-import com.acoder.krishivyapar.api.tryString
 import org.json.JSONObject
 
 data class AdListModel(
     var id: Int, var title: String, var price: Float, var quantity: Float, var unit: String,
     var locText: String,var createdAt: String = "",
-    var image : ImageModel,
+    var image : ImageModel?,
 
 
 ): BaseModel(){
@@ -29,7 +25,7 @@ data class AdListModel(
                 ad.optString("unit"),
                 ad.getString("locText"),
                 ad.optString("createdAt"),
-                ImageModel.newInstance(ad.getJSONObject("image")),
+                ImageModel.newInstance(ad.optJSONObject("image")),
             )
         }
     }

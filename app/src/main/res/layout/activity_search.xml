@@ -12,9 +12,10 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Search city, area or locality"
+        android:hint="Search crop or related products"
         app:backButtonTint="@color/black"
         app:clearButtonTint="@color/black"
+        app:micEnabled="false"
         app:micButtonTint="@color/black" />
 
     <View

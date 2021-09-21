@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.acoder.krishivyapar.api.Api
 import com.acoder.krishivyapar.api.ApiData
 import com.acoder.krishivyapar.databinding.ActivityNameRegisterBinding
+import com.shubhamgupta16.materialkit.UtilsKit
 
 class AuthNameRegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,19 +17,27 @@ class AuthNameRegisterActivity : AppCompatActivity() {
 
         binding.nameEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                val name = binding.nameEditText.text.toString()
-                if (name.length < 3) {
-                    binding.nameTextInput.error = "Please Enter a valid name"
-                    return@setOnEditorActionListener false
-                }
-                Api(this).requestUpdateName(name).atSuccess {
-                    val i = Intent(this, MainActivity::class.java)
-                    startActivity(i)
-                    finish()
-                }.execute()
+                updateName(binding)
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
         }
+        binding.continueButton.setOnClickListener {
+            UtilsKit.hideKeyboard(this)
+            updateName(binding)
+        }
+    }
+
+    private fun updateName(binding: ActivityNameRegisterBinding){
+        val name = binding.nameEditText.text.toString()
+        if (name.length < 3) {
+            binding.nameTextInput.error = "Please Enter a valid name"
+            return
+        }
+        Api(this).requestUpdateName(name).atSuccess {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+            finish()
+        }.execute()
     }
 }

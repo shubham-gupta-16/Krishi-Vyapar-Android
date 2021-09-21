@@ -25,29 +25,33 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
         val api = Api(this)
 
-        api.reFetchBaseUrl("/krishi-vyapar-php/")
 
         if (!api.hasCurrentUser()) {
             Thread.sleep(2000)
             goToSignUpPage()
         } else {
-            Thread.sleep(1000)
-//                updating data for the app:
-            api.requestLoadBase(this).atSuccess { name ->
-                if (name == null)
-                    startActivity(Intent(this, AuthNameRegisterActivity::class.java))
-                else
-                    startActivity(Intent(this, MainActivity::class.java))
-                finish()
-            }.atError { code, message ->
-                if (code == Api.INVALID_TOKEN || code == Api.USER_NOT_EXIST) {
-                    api.logout()
-                    goToSignUpPage()
-                    return@atError
-                }
-                Toast.makeText(this, "$code -> $message", Toast.LENGTH_SHORT).show()
-            }.execute()
+            fetchBase(api)
         }
+    }
+
+    private fun fetchBase(api: Api){
+        api.requestLoadBase(this).atSuccess { name ->
+            if (name == null)
+                startActivity(Intent(this, AuthNameRegisterActivity::class.java))
+            else
+                startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }.atError { code, message ->
+            if (code == Api.INVALID_TOKEN || code == Api.USER_NOT_EXIST) {
+                api.logout()
+                goToSignUpPage()
+                return@atError
+            } else if (code == 404)
+            api.reFetchBaseUrl("/krishi-vyapar-php/") {
+                fetchBase(api)
+            } else
+                Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }.execute()
     }
 
     private fun goToSignUpPage(){

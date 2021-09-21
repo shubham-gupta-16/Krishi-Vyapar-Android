@@ -9,8 +9,7 @@ import org.json.JSONObject
 data class AdModel(
     var id:Int, var title: String, var description: String?, var price: Float, var quantity: Float, var unit: String,
     var categoryId: Int, var subCategoryId: Int, var extras: String?, var location: LocationModel,
-    var images : List<ImageModel>, val user: UserModel,
-    val postId: Int = 0, val viewsCount: Int = 0, val favCount: Int = 0, val createdAt: String = "",
+    var images : List<ImageModel?>, val user: UserModel, val viewsCount: Int = 0, val favCount: Int = 0, val createdAt: String = "",
     val status: Int = 0,
 ): BaseModel() {
     companion object {
@@ -24,11 +23,10 @@ data class AdModel(
                 ad.optString("unit"),
                 ad.optInt("categoryId"),
                 ad.optInt("subCategoryId"),
-                ad.getString("extras"),
+                ad.optString("extras"),
                 parseLocation(ad.getJSONObject("location")),
                 parseImages(ad.getJSONArray("images")),
                 parseUser(ad.getJSONObject("user")),
-                ad.getInt("id"),
                 ad.getInt("views"),
                 ad.getInt("fav"),
                 ad.optString("createdAt"),

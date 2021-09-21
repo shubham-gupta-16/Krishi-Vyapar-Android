@@ -15,6 +15,7 @@ import org.json.JSONObject
 class AdRelevantDetailsFragment() : Fragment() {
     private lateinit var binding: FragmentAdRelevantDetailsBinding
     private lateinit var api: Api
+    private lateinit var arrayAdapter: ArrayAdapter<String>
     private var listener: ((name: String, desc: String, price: Float, quantity: Float, unit: String, extras: JSONObject) -> Unit)? =
         null
 
@@ -36,8 +37,12 @@ class AdRelevantDetailsFragment() : Fragment() {
         api = Api(requireContext())
 
         val languages = resources.getStringArray(R.array.unit)
-        val arrayAdapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_list_item_activated_1, languages)
+        if (!::arrayAdapter.isInitialized)
+            arrayAdapter = ArrayAdapter(
+                requireContext(),
+                android.R.layout.simple_list_item_activated_1,
+                languages
+            )
         binding.unitAutoDrop.setAdapter(arrayAdapter)
 
         binding.nextButton.setOnClickListener {

@@ -17,6 +17,7 @@ class TestActivity : AppCompatActivity() {
 
 //        supportFragmentManager.beginTransaction().replace(R.id.frameLayout, ImagesFragment()).commit()
         startActivity(Intent(this, SplashActivity::class.java))
+        finish()
     }
 
 }

@@ -1,6 +1,5 @@
 package com.acoder.krishivyapar.api
 
-import android.app.Activity
 import android.content.Context
 import android.database.Cursor
 import android.net.Uri
@@ -23,8 +22,8 @@ class Api(context: Context) : ApiData(context) {
         const val INVALID_TOKEN = 41
     }
 
-    fun con(context: Context, _uri: Uri): String? {
-        var filePath: String? = null
+    fun mediaUriToFilePath(context: Context, _uri: Uri): String? {
+        var filePath: String?
         Log.d("erer", "URI = $_uri")
         if ("content" == _uri.scheme) {
             val cursor: Cursor? = context.contentResolver
@@ -43,7 +42,7 @@ class Api(context: Context) : ApiData(context) {
         val api = Api(context)
         val map = hashMapOf<String, File>()
         for ((key, value) in images) {
-            val path = con(context, key.toUri());
+            val path = mediaUriToFilePath(context, key.toUri());
             if (path != null) {
                 val file = File(path)
                 map["image_$value"] = file
@@ -88,25 +87,43 @@ class Api(context: Context) : ApiData(context) {
         return apiSys
     }
 
-    fun requestAds(page: Int): APISystem<(locationList: ArrayList<AdListModel>) -> Unit> {
+    fun requestAdById(id: Int): APISystem<(adModel: AdModel) -> Unit> {
+        val apiSys = APISystem<(adModel: AdModel) -> Unit>(
+            authRequestBuilder("post.php")
+                .addPost("id", "$id")
+        ) { obj, successCallback ->
+            if (successCallback == null) return@APISystem
+            val adModel = AdModel.newInstance(obj.getJSONObject("post"))
+            successCallback(adModel)
+        }
+        return apiSys
+    }
+
+    fun requestAds(
+        page: Int,
+        query: String?
+    ): APISystem<(locationList: ArrayList<AdListModel>, maxPage:Int, page:Int) -> Unit> {
         val location = getLocation()
         val lat = location?.lat ?: 0;
         val lng = location?.lng ?: 0;
-        val apiSys = APISystem<(list: ArrayList<AdListModel>) -> Unit>(
-            authRequestBuilder("post_list.php")
-                .addPost("page", page.toString())
-                .addPost("lat", lat.toString())
-                .addPost("lng", lng.toString())
-                .addPost("type", "0")
-        ) { obj, successCallback ->
+        val requestBuilder = authRequestBuilder("post_list.php")
+            .addPost("page", page.toString())
+            .addPost("lat", lat.toString())
+            .addPost("lng", lng.toString())
+            .addPost("type", "0")
+        if (query != null)
+            requestBuilder.addPost("q", query)
+        val apiSys = APISystem<(list: ArrayList<AdListModel>, maxPage:Int, page:Int) -> Unit>(requestBuilder)
+        { obj, successCallback ->
             if (successCallback == null) return@APISystem
             val list = ArrayList<AdListModel>();
             val jArr = obj.getJSONArray("posts")
+            val maxPage = obj.getInt("maxPage")
             for (i in 0 until jArr.length()) {
                 val posts = jArr.getJSONObject(i)
                 list.add(AdListModel.newInstance(posts))
             }
-            successCallback(list)
+            successCallback(list, maxPage, page)
         }
         return apiSys
     }
@@ -147,7 +164,7 @@ class Api(context: Context) : ApiData(context) {
 
             val name = obj.tryString("name");
             Log.d("TAG", "signUp: $name")
-            localSignUp(token, name)
+            localSignUp(token, name, mobile)
             successCallback(name)
         }
         return apiSys
@@ -158,14 +175,15 @@ class Api(context: Context) : ApiData(context) {
             authRequestBuilder("auth/update_name.php").addPost("name", newName)
         ) { _, successCallback ->
             if (successCallback == null) return@APISystem
+            updateName(newName)
             successCallback()
         }
         return apiSys
     }
 
-    fun reFetchBaseUrl(path: String = "") {
+    fun reFetchBaseUrl(path: String = "", listener: () -> Unit) {
         EasyNetwork.Builder("https://onetakego.com/acoder/url_helper?id=2").build()
-            .getAsJSONObject(object : JSONObjectRequestListener{
+            .getAsJSONObject(object : JSONObjectRequestListener {
                 override fun onResponse(response: JSONObject?) {
                     if (response == null) return
                     if (response.optInt("status") != 0) return
@@ -173,7 +191,7 @@ class Api(context: Context) : ApiData(context) {
                     if ("$baseUrl$path" != BaseApi.getUrl(context)) {
                         Log.d("base", baseUrl + path)
                         BaseApi.setUrl(context, baseUrl + path)
-                        (context as Activity).finish()
+                        listener()
                     }
                 }
 

@@ -75,7 +75,9 @@
                 android:textColor="@color/textSecondary"
                 android:textSize="11sp" />
 
+<!--            yahoo replace with like button-->
             <ImageButton
+                android:visibility="gone"
                 android:id="@+id/likeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

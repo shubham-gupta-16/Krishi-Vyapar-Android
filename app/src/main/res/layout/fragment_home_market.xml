@@ -4,10 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="5dp"
     tools:context=".fragments.main.sub_fragments.HomeMarketFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.shubhamgupta16.materialkit.ProductView
         android:id="@+id/adsRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

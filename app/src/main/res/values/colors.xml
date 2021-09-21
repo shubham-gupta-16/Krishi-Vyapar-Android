@@ -15,4 +15,6 @@
 
     <color name="textPrimary">#111111</color>
     <color name="textSecondary">#333333</color>
+    <color name="textTertiary">#555555</color>
+    <color name="colorOutline">#e8e8e8</color>
 </resources>

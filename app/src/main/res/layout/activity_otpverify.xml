@@ -1,93 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".AuthOTPVerifyActivity">
 
-    <TextView
+
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:gravity="center"
-        android:text="Verification Code"
-        android:textColor="@color/textPrimary"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_otp"
+            app:tint="@color/textTertiary" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Please type the verification code sent to"
-        android:textColor="@color/textPrimary"
-        android:textSize="15sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Verification Code"
+            android:textColor="@color/textPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/mobileText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:gravity="center"
-        android:text=""
-        android:textColor="@color/textPrimary"
-        android:textSize="15sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:text="Please type the verification code sent to"
+            android:textColor="@color/textPrimary"
+            android:textSize="15sp" />
 
-    <!--<LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp">
+        <TextView
+            android:id="@+id/mobileText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:text="+91 9898989898"
+            android:textColor="@color/textPrimary"
+            android:textSize="15sp" />
 
-
-        <EditText
-            android:id="@+id/otp_edit_text_1"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/otp_edit_text_2"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/otp_edit_text_3"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:inputType="number" />
-
-        <EditText
-            android:id="@+id/otp_edit_text_4"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:inputType="number" />
-
-    </LinearLayout>-->
-
-    <com.mukesh.OtpView
-        android:id="@+id/otpView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="41dp"
-        android:clickable="true"
-        android:cursorVisible="true"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:inputType="number"
-        android:textSize="18sp"
-        app:OtpCursorColor="@color/primary_variant"
-        app:OtpItemCount="6"
-        app:OtpItemHeight="40dp"
-        app:OtpItemWidth="40dp"
-        app:OtpLineColor="@color/primary"
-        app:OtpViewType="line" />
+        <!--<LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp">
 
 
+            <EditText
+                android:id="@+id/otp_edit_text_1"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:inputType="number" />
 
-</LinearLayout>
+            <EditText
+                android:id="@+id/otp_edit_text_2"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/otp_edit_text_3"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/otp_edit_text_4"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:inputType="number" />
+
+        </LinearLayout>-->
+
+        <com.chaos.view.PinView
+            android:id="@+id/firstPinView"
+            style="@style/PinWidget.PinView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:cursorVisible="true"
+            android:inputType="phone"
+            android:itemBackground="@color/app_background"
+            app:lineColor="@color/primary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:itemWidth="45dp"
+            app:itemHeight="45dp"
+            app:cursorWidth="2dp"
+            app:itemCount="6"
+            app:itemRadius="10dp"
+            app:itemSpacing="10dp"
+            app:viewType="rectangle" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/loadingLayout"
+        android:visibility="gone"
+        layout="@layout/loading_layout_trans" />
+</RelativeLayout>

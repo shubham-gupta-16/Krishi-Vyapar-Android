@@ -22,11 +22,11 @@ fun parseLocation(each: JSONObject): LocationModel {
 }
 
 fun parseUser(user: JSONObject): UserModel {
-    return UserModel(user.getString("uid"), user.getString("name"), user.tryString("profileUrl"));
+    return UserModel(user.getString("uid"), user.getString("name"), user.getString("mobile"), user.tryString("profileUrl"));
 }
 
-fun parseImages(images: JSONArray): ArrayList<ImageModel> {
-    val list = arrayListOf<ImageModel>()
+fun parseImages(images: JSONArray): ArrayList<ImageModel?> {
+    val list = arrayListOf<ImageModel?>()
     for (i in 0 until images.length()){
         list.add(ImageModel.newInstance(images.getJSONObject(i)))
     }

@@ -13,6 +13,7 @@ import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.acoder.krishivyapar.adapters.MyViewPagerAdapter
 import com.acoder.krishivyapar.api.ApiData
 import com.acoder.krishivyapar.databinding.ActivityMainBinding
+import com.acoder.krishivyapar.fragments.main.AccountFragment
 import com.acoder.krishivyapar.fragments.main.HomeFragment
 import com.acoder.krishivyapar.fragments.main.MarketFragment
 import com.acoder.krishivyapar.fragments.main.RequestsFragment
@@ -51,12 +52,6 @@ class MainActivity : AppCompatActivity() {
 //        badge.number = 99
     }
 
-    private fun logout(){
-        apiData.logout()
-        startActivity(Intent(this, AuthSignUpActivity::class.java))
-        finish()
-    }
-
     private fun setupViews() {
 //        bottomNavigation Item Select
 //        binding.bottomNavigation.itemIconTintList = null
@@ -65,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.action_home -> binding.viewpager2.setCurrentItem(0, false)
                 R.id.action_chat -> binding.viewpager2.setCurrentItem(1, false)
                 R.id.action_favorite -> binding.viewpager2.setCurrentItem(2, false)
-                R.id.action_account -> item.isChecked = true
+                R.id.action_account -> binding.viewpager2.setCurrentItem(3, false)
 //                todo show account fragment instead
             }
             return@setOnItemSelectedListener false;
@@ -87,6 +82,8 @@ class MainActivity : AppCompatActivity() {
                     1 -> binding.bottomNavigation.menu.findItem(R.id.action_chat).isChecked = true
                     2 -> binding.bottomNavigation.menu.findItem(R.id.action_favorite).isChecked =
                         true
+                    3 -> binding.bottomNavigation.menu.findItem(R.id.action_account).isChecked =
+                        true
                 }
             }
         })
@@ -101,6 +98,7 @@ class MainActivity : AppCompatActivity() {
         adapter.addFragment(HomeFragment())
         adapter.addFragment(MarketFragment())
         adapter.addFragment(RequestsFragment())
+        adapter.addFragment(AccountFragment())
         viewPager2.adapter = adapter
 
 //        disable viewpager swipe
@@ -121,11 +119,14 @@ class MainActivity : AppCompatActivity() {
     private fun setupFabButton() {
         val scale = 0.9f;
         animateFabCard(0f, scale, scale, 50f, 1)
+//        yahoo enable animation and remove startActivity
         binding.fab.setOnClickListener {
-            if (isFabCardVisible)
-                animateFabCard(0f, scale, scale, 50f, 200)
-            else
-                animateFabCard(1f, 1f, 1f, 0f, 200)
+            startActivity(Intent(this, AddNewAdActivity::class.java))
+            return@setOnClickListener
+//            if (isFabCardVisible)
+//                animateFabCard(0f, scale, scale, 50f, 200)
+//            else
+//                animateFabCard(1f, 1f, 1f, 0f, 200)
         }
 
         binding.addNewAd.setOnClickListener {

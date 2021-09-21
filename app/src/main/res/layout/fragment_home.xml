@@ -6,15 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.main.HomeFragment">
 
-
+<!-- yahoo height = 45dp-->
     <View
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="55dp"
         android:background="@color/toolbar" />
 
-
+    <!--    yahoo un_hide this-->
     <com.google.android.material.tabs.TabLayout
+        android:visibility="gone"
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="45dp"
@@ -26,9 +27,9 @@
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewpager2"
-        android:layout_below="@id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/tab_layout" />
 
     <!--    <View-->
     <!--        android:layout_width="match_parent"-->
@@ -36,23 +37,65 @@
     <!--        android:layout_below="@id/tab_layout"-->
     <!--        android:background="@drawable/shadow_toolbar"/>-->
 
+    <!--    yahoo remove marginTop-->
     <com.acoder.krishivyapar.views.SelectedLocationView
         android:id="@+id/selectedLocationView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp" />
 
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_toStartOf="@id/search_button"
+        android:layout_height="wrap_content"
+        android:layout_margin="1dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/arrow_back"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_margin="2dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_cross" />
+
+        <TextView
+            android:id="@+id/search_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:lines="1"
+            android:layout_height="wrap_content"
+            android:text="Search Text"
+            android:layout_marginTop="14dp"
+            android:textSize="16sp"
+            android:textColor="@color/textPrimary" />
+        <ImageButton
+            android:id="@+id/selectedLocationIcon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:src="@drawable/ic_loc_icon_outline"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:layout_marginTop="3dp"
+            app:tint="@color/textSecondary" />
+    </LinearLayout>
+
+    <!--    yahoo remove marginTop-->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/search_button"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="2dp"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/search_bold" />
 
+    <!--    yahoo below toolbar-->
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignBottom="@id/tab_layout"
-        android:background="#ddd" />
+        android:layout_height="10dp"
+        android:layout_below="@id/toolbar"
+        android:background="@drawable/shadow_toolbar" />
 
 </RelativeLayout>

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.acoder.krishivyapar.api.Api
 import com.acoder.krishivyapar.databinding.ActivityLocationBinding
 import com.acoder.krishivyapar.models.LocationModel
+import com.shubhamgupta16.materialkit.AnimUtils
 
 class LocationActivity : AppCompatActivity() {
     lateinit var binding: ActivityLocationBinding
@@ -44,7 +45,6 @@ class LocationActivity : AppCompatActivity() {
         binding.testSuggestion.setCopyIcon(android.R.color.transparent)
         binding.testSuggestion.setSuggestionIcon(R.drawable.ic_loc_icon)
         binding.testSuggestion.setOnSuggestionClickListener { suggestion, listPosition, _, isHistory ->
-            Toast.makeText(this@LocationActivity, suggestion, Toast.LENGTH_SHORT).show()
             if (!isHistory)
                 binding.testSuggestion.addHistory(suggestion)
             if (listPosition >= 0){
@@ -58,8 +58,10 @@ class LocationActivity : AppCompatActivity() {
     }
 
     private fun fetchLocations(newText: String, k: Int, toSet: Boolean = false) {
+        if (toSet)
+            AnimUtils.fadeVisibleView(binding.loadingLayout.v)
         api.fetchLocations(newText).atSuccess { list ->
-            if (toSet && list.isNotEmpty()){
+            if (toSet){
                 api.setLocation(list[0])
                 finish()
                 return@atSuccess

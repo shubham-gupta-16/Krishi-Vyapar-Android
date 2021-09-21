@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.acoder.krishivyapar.api.BaseApi
 import com.acoder.krishivyapar.api.CategoryManager
 import com.acoder.krishivyapar.databinding.ItemCategoryGrid2Binding
+import com.bumptech.glide.Glide
 
 class SubCategoryRecyclerAdapter(
     private val context: Context,
@@ -23,7 +25,9 @@ class SubCategoryRecyclerAdapter(
 
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val model = list[position]
-        holder.bind.title.text = model.json.getJSONObject("name").getString("hi")
+        holder.bind.title.text = model.json.getJSONObject("name").getString("en")
+        val image = BaseApi.getImagesUrl(context) + model.json.optString("thumb")
+        Glide.with(context).load(image).into(holder.bind.image)
         holder.itemView.setOnClickListener {
             if (listener != null)
                 listener?.invoke(model)

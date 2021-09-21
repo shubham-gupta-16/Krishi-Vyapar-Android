@@ -7,31 +7,47 @@
     android:orientation="vertical"
     tools:context=".AuthSignUpActivity">
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_app_icon" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Sign In to Krishi Vyapar"
+        android:textColor="@color/textPrimary"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="40dp"
         android:gravity="center"
         android:text="Enter your mobile number to continue"
         android:textColor="@color/textPrimary"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp">
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/mobileTextInput"
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+            style="@style/FormTextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxBackgroundColor="@color/app_background"
-            app:boxCornerRadiusBottomEnd="22dp"
-            app:boxCornerRadiusBottomStart="22dp"
-            app:boxCornerRadiusTopEnd="22dp"
-            app:boxCornerRadiusTopStart="22dp">
+            android:hint="mobile"
+            app:boxBackgroundColor="@color/app_background">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/mobile_edit_text"
@@ -48,20 +64,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="18dp"
             android:text="+91"
             android:textColor="@color/textPrimary"
             android:textSize="16sp" />
     </FrameLayout>
 
 
-
     <Button
+        style="@style/PrimaryButton"
         android:id="@+id/continueButton"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_gravity="end"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:text="Continue" />
 
 </LinearLayout>

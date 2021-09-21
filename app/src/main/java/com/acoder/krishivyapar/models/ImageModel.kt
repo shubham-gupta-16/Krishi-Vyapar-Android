@@ -13,8 +13,9 @@ data class ImageModel(var name: String, var table:String, var resolutions: List<
     }
 
     companion object {
-        fun newInstance(image: JSONObject): ImageModel{
-            val resArr = image.getJSONArray("resolutions")
+        fun newInstance(image: JSONObject?): ImageModel? {
+            if (image == null) return null;
+            val resArr = image.getJSONArray("moreResolutions")
             val resolutions = arrayListOf<String>()
             for (j in 0 until resArr.length())
                 resolutions.add(resArr.getString(j))
