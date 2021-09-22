@@ -15,9 +15,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
             android:text="Location"
             android:textColor="@color/textPrimary"
-            android:textSize="18sp" />
+            android:textSize="19sp" />
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
@@ -34,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="-5dp"
             android:layout_marginBottom="-5dp"
-            android:hint="Search city, area or locality"
+            android:hint="Search your city/district"
             android:imeOptions="actionDone"
             app:backButtonIcon="@drawable/ic_kit_search_24" />
     </LinearLayout>

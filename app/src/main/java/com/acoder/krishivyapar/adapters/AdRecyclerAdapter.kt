@@ -37,6 +37,7 @@ class AdRecyclerAdapter(private val context: Context, private val list: List<AdL
             Glide.with(context).load(BaseApi.getImagesUrl(context) + model.image!!.getPath("144"))
                 .placeholder(R.drawable.placeholder_loading_image).error(R.drawable.placeholder_loading_image).into(holder.bind.image)
         holder.bind.price.text = model.formatPrice(model.price)
+        holder.bind.createdAt.text = model.createdAt
         holder.bind.subPrice.text = "${model.quantity.roundToInt()} ${model.unit} - ${
             model.formatPrice(
                 (model.price / model.quantity).roundToInt().toFloat()

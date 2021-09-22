@@ -70,11 +70,11 @@ open class ApiData(protected val context: Context) {
     }
 
     protected fun requestBuilder(path: String): EasyNetwork.Builder {
-        return EasyNetwork.Builder(BaseApi.getUrl(context) + path)
+        return EasyNetwork.Builder(BaseApi.getApiUrl(context) + path)
     }
 
     protected fun authRequestBuilder(path: String): EasyNetwork.Builder {
-        val builder = EasyNetwork.Builder(BaseApi.getUrl(context) + path)
+        val builder = EasyNetwork.Builder(BaseApi.getApiUrl(context) + path)
         builder.addHeader("Auth", getToken())
         return builder
     }

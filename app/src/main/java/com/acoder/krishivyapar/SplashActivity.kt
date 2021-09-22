@@ -1,21 +1,19 @@
 package com.acoder.krishivyapar
 
 import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.telephony.TelephonyManager
 import android.util.Log
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.acoder.krishivyapar.api.Api
 import com.acoder.krishivyapar.databinding.ActivitySplashBinding
 import java.lang.reflect.Method
 import java.util.*
-import android.net.Uri
-
-import android.os.Build
-import android.provider.Settings
-import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentManager
 
 
 class SplashActivity : AppCompatActivity() {
@@ -29,6 +27,9 @@ class SplashActivity : AppCompatActivity() {
         if (!api.hasCurrentUser()) {
             Thread.sleep(2000)
             goToSignUpPage()
+            api.reFetchBaseUrl("/") {
+                fetchBase(api)
+            }
         } else {
             fetchBase(api)
         }
@@ -46,10 +47,10 @@ class SplashActivity : AppCompatActivity() {
                 api.logout()
                 goToSignUpPage()
                 return@atError
-            } else if (code == 404)
-            api.reFetchBaseUrl("/krishi-vyapar-php/") {
-                fetchBase(api)
-            } else
+            } else if (code == 404) {
+                api.reFetchBaseUrl("/") {
+                }
+            }else
                 Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }.execute()
     }

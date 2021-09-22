@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.acoder.krishivyapar.R
 import com.acoder.krishivyapar.api.BaseApi
 import com.acoder.krishivyapar.api.CategoryManager
 import com.acoder.krishivyapar.databinding.ItemCategoryGrid2Binding
@@ -25,8 +26,8 @@ class CategoryRecyclerAdapter(
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         val model = list[position]
         holder.bind.title.text = model.json.getJSONObject("name").getString("en")
-        val image = BaseApi.getImagesUrl(context) + model.json.optString("thumb")
-        Glide.with(context).load(image).into(holder.bind.image)
+        val image = BaseApi.getImagesUrl(context) + "cat/" + model.json.optString("thumb")
+        Glide.with(context).load(image).placeholder(R.drawable.placeholder_loading_image).error(R.drawable.placeholder_loading_image).into(holder.bind.image)
         holder.itemView.setOnClickListener {
             if (listener != null)
                 listener?.invoke(model)

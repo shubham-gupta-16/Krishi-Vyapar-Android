@@ -55,8 +55,8 @@
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/shadow_bottom_nav.xml" value="0.22552083333333334" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/drawable/z_text_card.xml" value="0.22552083333333334" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_add_new_ad.xml" value="0.25" />
-        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_full_ad_view.xml" value="0.22" />
-        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_location.xml" value="0.2" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_full_ad_view.xml" value="0.18" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_location.xml" value="0.18" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_name_register.xml" value="0.25" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/activity_otpverify.xml" value="0.2" />
@@ -79,7 +79,7 @@
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_relevant_details.xml" value="0.22135416666666666" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/fragment_requests.xml" value="0.209375" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/item_ad_horizontal.xml" value="0.25" />
-        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/item_category_grid_2.xml" value="0.25" />
+        <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/item_category_grid_2.xml" value="0.22" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/item_image_select.xml" value="0.25" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/layout_location.xml" value="0.33" />
         <entry key="..\:/App_Projects/KrishiVyapar/app/src/main/res/layout/layout_progress_loading.xml" value="0.209375" />

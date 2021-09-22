@@ -15,6 +15,9 @@ import com.bumptech.glide.Glide
 import com.shubhamgupta16.materialkit.AnimUtils
 import java.util.ArrayList
 import kotlin.math.roundToInt
+import android.content.Intent
+import android.net.Uri
+
 
 class FullAdViewActivity : AppCompatActivity() {
 
@@ -50,6 +53,7 @@ class FullAdViewActivity : AppCompatActivity() {
         binding.subPrice.text = "${model.quantity.roundToInt()} ${model.unit} - ${model.formatPrice((model.price/model.quantity).roundToInt().toFloat())} per ${model.unit}"
         binding.title.text = model.title
         binding.locText.text = model.location.getTrimmed()
+        binding.createdAt.text = model.createdAt
         Glide.with(this).load(model.user.profileUrl).error(R.drawable.placeholder_user).placeholder(R.drawable.placeholder_user).into(binding.userIcon)
         binding.userName.text = model.user.name
         binding.userMobile.text = model.user.mobile
@@ -58,6 +62,14 @@ class FullAdViewActivity : AppCompatActivity() {
             binding.descriptionText.text = model.description
         } else
             binding.descriptionLayout.visibility = View.GONE
+
+        binding.callButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:${model.user.mobile}")
+            startActivity(intent)
+//            val intent = Intent(Intent.ACTION_CALL, Uri.parse("tel:" + model.user.mobile))
+            startActivity(intent)
+        }
     }
 
     private fun updateImagesUI(imageArr: List<ImageModel?>){

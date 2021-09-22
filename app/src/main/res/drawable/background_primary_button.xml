@@ -1,5 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="@color/primary"/>
-    <corners android:radius="@dimen/primary_button_radius"/>
-</shape>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="#A9B5FF">
+    <item android:id="@android:id/mask">
+        <shape>
+            <solid android:color="#A9B5FF"/>
+            <corners android:radius="@dimen/primary_button_radius"/>
+        </shape>
+    </item>
+    <item android:id="@android:id/background">
+        <shape>
+            <solid android:color="@color/primary"/>
+            <corners android:radius="@dimen/primary_button_radius"/>
+        </shape>
+    </item>
+</ripple>

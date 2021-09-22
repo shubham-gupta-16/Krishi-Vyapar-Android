@@ -18,18 +18,22 @@ open class BaseApi {
             editor.apply()
         }
 
-        fun getUrl(context: Context): String {
+        fun getApiUrl(context: Context): String {
+            return getBaseUrl(context) + "krishi-vyapar-php/"
+        }
+
+        fun getBaseUrl(context: Context): String {
             val sharedPref: SharedPreferences =
                 context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
             return sharedPref.getString("baseUrl", "").toString()
         }
 
         fun getImagesUrl(context: Context, path: String = ""): String {
-            return BaseApi.getUrl(context) +"images/"+path
+            return getBaseUrl(context) +"images/"+path
         }
 
         fun initBaseUrl(context: Context, url: String) {
-            if (getUrl(context).isEmpty())
+            if (getBaseUrl(context).isEmpty())
                 setUrl(context, url)
         }
     }

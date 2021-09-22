@@ -130,7 +130,7 @@ class Api(context: Context) : ApiData(context) {
 
     fun fetchLocations(keyword: String): APISystem<(locationList: ArrayList<LocationModel>) -> Unit> {
         val apiSys = APISystem<(list: ArrayList<LocationModel>) -> Unit>(
-            authRequestBuilder("location/index.php").addPost("q", keyword)
+            authRequestBuilder("location/index2.php").addPost("q", keyword)
         ) { obj, successCallback ->
             if (successCallback == null) return@APISystem
             val list = ArrayList<LocationModel>();
@@ -188,7 +188,7 @@ class Api(context: Context) : ApiData(context) {
                     if (response == null) return
                     if (response.optInt("status") != 0) return
                     val baseUrl = response.optString("url")
-                    if ("$baseUrl$path" != BaseApi.getUrl(context)) {
+                    if ("$baseUrl$path" != BaseApi.getBaseUrl(context)) {
                         Log.d("base", baseUrl + path)
                         BaseApi.setUrl(context, baseUrl + path)
                         listener()

@@ -1,13 +1,16 @@
 package com.acoder.krishivyapar.fragments.add
 
+import android.Manifest
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.acoder.krishivyapar.adapters.ImagesRecyclerAdapter
@@ -28,20 +31,48 @@ class ImagesFragment : Fragment() {
         return binding.root
     }
 
+    private fun checkOrTryPermission() {
+        val result =
+            checkSelfPermission(requireContext(), Manifest.permission.READ_EXTERNAL_STORAGE)
+        if (result != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ),
+                101
+            )
+        } else {
+            val list = getAllShownImagesPath(requireActivity())
+            val adapter = ImagesRecyclerAdapter(requireContext(), list)
+            binding.imageRecycler.adapter = adapter
+            binding.imageRecycler.itemAnimator = null
+            binding.imageRecycler.layoutManager = GridLayoutManager(requireContext(), 3)
+            binding.nextButton.setOnClickListener {
+                val imageList = adapter.getImages()
+                if (imageList.isNotEmpty())
+                    listener?.invoke(imageList)
+            }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            checkOrTryPermission()
+        }
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val list = getAllShownImagesPath(requireActivity())
-        Toast.makeText(context, "${list.size}", Toast.LENGTH_SHORT).show()
-        val adapter = ImagesRecyclerAdapter(requireContext(), list)
-        binding.imageRecycler.adapter = adapter
-        binding.imageRecycler.itemAnimator = null
-        binding.imageRecycler.layoutManager = GridLayoutManager(requireContext(), 3)
-        binding.nextButton.setOnClickListener {
-            val imageList = adapter.getImages()
-            if (imageList.isNotEmpty())
-                listener?.invoke(imageList)
-        }
+        checkOrTryPermission()
+
     }
 
 

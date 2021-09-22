@@ -250,13 +250,6 @@
     </LinearLayout>
 
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="6dp"
-        android:layout_above="@id/bNav"
-        android:background="@drawable/shadow_toolbar"
-        android:rotation="180" />
-
     <include
         android:id="@+id/loadingLayout"
         layout="@layout/loading_layout"
