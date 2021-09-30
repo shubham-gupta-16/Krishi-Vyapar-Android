@@ -21,7 +21,7 @@ class AuthOTPVerifyActivity : AppCompatActivity() {
         val binding = ActivityOtpverifyBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val mobile = intent.getStringExtra("mobile").toString()
-        val phoneAuthHandler = PhoneAuthHandler(this, true)
+        val phoneAuthHandler = PhoneAuthHandler(this)
 
         binding.mobileText.text = "+91 $mobile"
 

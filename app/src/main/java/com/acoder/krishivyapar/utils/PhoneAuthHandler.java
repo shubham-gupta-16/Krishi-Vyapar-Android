@@ -100,9 +100,9 @@ public class PhoneAuthHandler {
         auth.signInWithCredential(credential).addOnCompleteListener(activity, task -> {
             if (activity.isDestroyed()) return;
             if (task.isSuccessful()) {
+                onCompleteListener.onSuccess(auth.getUid());
                 if (isSignOut)
                     auth.signOut();
-                onCompleteListener.onSuccess(auth.getUid());
             } else {
                 String message = task.getException().getMessage();
                 onCompleteListener.onError(message);
